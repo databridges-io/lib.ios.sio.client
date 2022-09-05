@@ -47,11 +47,9 @@ public class Rpc{
        }
     
     private func  isAlphaNumeric( _ s:String)->Bool {
-        //"^[a-zA-Z0-9@$&-.+:]*$"
-        
         if(s.isEmpty) { return false }
         
-        if ( s.range(of: "^[a-zA-Z0-9@$&-.+:]*$", options: .regularExpression) == nil) { return false }
+        if ( s.range(of: "^[a-zA-Z0-9.:_-]*$", options: .regularExpression) == nil) { return false }
         return true
     }
     

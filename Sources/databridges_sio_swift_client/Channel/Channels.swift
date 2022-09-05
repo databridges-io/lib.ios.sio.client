@@ -28,7 +28,7 @@ public class Channels {
     var _channelname_sid:[String:String]=[:]
     var _dbcore:databridges_sio_swift_client
     var _dispatch:EventDispatcher
-    static let  regex:String  = "^[a-zA-Z0-9@$&-.+:]*$"
+    static let  regex:String  = "^[a-zA-Z0-9.:_-]*$" 
     //static let  pattern:Pattern
     
     init(_ dBCoreObject: databridges_sio_swift_client)
@@ -241,10 +241,9 @@ public class Channels {
     
     
     func  isAlphaNumeric( _ s:String)->Bool {
-        //"^[a-zA-Z0-9@$&-.+:]*$"
         if(s.isEmpty) { return false }
         
-        if ( s.range(of: "^[a-zA-Z0-9@$&-.+:]*$", options: .regularExpression) == nil) { return false }
+        if ( s.range(of: "^[a-zA-Z0-9.:_-]*$", options: .regularExpression) == nil) { return false }
         return true
         
     }
