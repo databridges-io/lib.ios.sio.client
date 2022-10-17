@@ -1,9 +1,9 @@
 ![](https://img.shields.io/badge/Licence-Apache%202.0-green.svg)![](https://shields.io/badge/swift-+5.0-blue) 
 
-# Databridges Swift client Library targeting iOS
+# Databridges Swift client Library
 
 
-DataBridges makes it easy for connected devices and applications to communicate with each other in realtime in an efficient, fast, reliable and trust-safe manner. Databridges Swift client library (targeting iOS) allows you to easily add realtime capabilities to your applications in record time.
+DataBridges makes it easy for connected devices and applications to communicate with each other in realtime in an efficient, fast, reliable and trust-safe manner. Databridges Swift client library allows you to easily add realtime capabilities to your applications in record time.
 
 ## Have you registered with dataBridges?
 
@@ -50,10 +50,12 @@ The following topics are covered:
 ## Supported platforms
 
 - Swift 5.0 and above
-
-- Deployment targets  iOS 13.0 and above
+- iOS deployment targets v13.0 and above
+- macOS deployment targets v10.15 and above
 
 ## Installation
+
+#### iOS
 
 To add `databridges_sio_swift_client` package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency... and enter repository URL `https://github.com/databridges-io/lib.ios.sio.client.git`. 
 
@@ -61,7 +63,40 @@ When you enter the package dependency’s URL, choose Version *package requireme
 
 In Xcode Project navigator, the Swift Package Dependencies section shows the newly added `databridges_sio_swift_client` package dependency. Click the disclosure triangle to view the contents of the package as it exists locally on your Mac.
 
+#### macOS
+
+Edit `Package.swift` in XCode and add below lines in `let package = Package(` section add below lines
+```swift
+platforms: [.macOS("10.15")],
+	dependencies: [
+		.package(name: "databridges_sio_swift_client", url: "https://github.com/databridges-io/lib.ios.sio.client.git" , from: "2.0.2")
+	],
+```
+in `targets[.target(` add below code to link depencencies to your project.
+```swift
+dependencies: ["databridges_sio_swift_client"]),
+```
+Below is the sample Package.swift file after adding dataBridges dependencies.
+```swift
+import PackageDescription
+let package = Package(
+    name: "connections",
+    platforms: [.macOS("10.15")],
+    dependencies: [
+        .package(name: "databridges_sio_swift_client", url: "https://github.com/databridges-io/lib.ios.sio.client.git" , from: "2.0.2")
+    ],
+    targets: [
+        .target(
+            name: "connections",
+            dependencies: ["databridges_sio_swift_client"]),
+    ]
+)
+```
+ Once this file is saved, XCode will download required dependencies from git.
+
 > Note : Databridges library uses socket.io for websocket protocol management.
+
+
 
 ## Initialization
 
