@@ -70,7 +70,7 @@ Edit `Package.swift` in XCode and add below lines in `let package = Package(` se
 ```swift
 platforms: [.macOS("10.15")],
 	dependencies: [
-		.package(name: "databridges_sio_swift_client", url: "https://github.com/databridges-io/lib.ios.sio.client.git" , from: "2.0.2")
+		.package(name: "databridges_sio_swift_client", url: "https://github.com/databridges-io/lib.ios.sio.client.git" , from: "2.0.3")
 	],
 ```
 in `targets[.target(` add below code to link depencencies to your project.
@@ -84,7 +84,7 @@ let package = Package(
     name: "connections",
     platforms: [.macOS("10.15")],
     dependencies: [
-        .package(name: "databridges_sio_swift_client", url: "https://github.com/databridges-io/lib.ios.sio.client.git" , from: "2.0.2")
+        .package(name: "databridges_sio_swift_client", url: "https://github.com/databridges-io/lib.ios.sio.client.git" , from: "2.0.3")
     ],
     targets: [
         .target(
@@ -1773,9 +1773,9 @@ Once the rate-limit is exceeded, all further channel messages as well as RPC and
 The connectionstatus object allows you to bind for event `connect_error`.
 When the rate-limit is exceeded or restored you will get the following payload.code
 
-- `ERR_socket_ratelimit_exceeded`
-- `ERR_ratelimit_exceeded`
-- `ERR_ratelimit_restored`
+- `ERR_SOCKET_RATELIMIT_EXCEEDED`
+- `ERR_RATELIMIT_EXCEEDED`
+- `ERR_RATELIMIT_RESTORED`
 
 Take a look at the attached code-set to manage how to get notified about limit exceeded conditions.
 
@@ -1796,7 +1796,7 @@ The system will disconnect excess connection and before that it will send a noti
 The connectionstatus object allows you to bind for event `connect_error`.
 When the concurrent connection limit is exceeded you will get the following payload.code
 
-- `ERR_concurrent_connection_limit`
+- `ERR_CONCURRENT_CONNECTION_LIMIT`
 
 Take a look at the attached code-set to manage how to get notified about limit exceeded conditions.
 
@@ -1810,16 +1810,16 @@ try? dbridge.connectionstate?.bind("connect_error", {  (event: Any) in
     
     switch(payload.code)
     {
-        case "ERR_socket_ratelimit_exceeded":
+        case "ERR_SOCKET_RATELIMIT_EXCEEDED":
             print("Socket ratelimit Exceeded");
         break;
-        case "ERR_ratelimit_exceeded":
+        case "ERR_RATELIMIT_EXCEEDED":
             print( "Customer ratelimit Exceeded \(payload.message) ");
             break;
-        case "ERR_ratelimit_restored":
+        case "ERR_RATELIMIT_RESTORED":
             print( "Customer ratelimit Restored");
             break;
-        case "ERR_concurrent_connection_limit":
+        case "ERR_CONCURRENT_CONNECTION_LIMIT":
             print("Customer Connection limit Exceeded.");
             break;
         default:

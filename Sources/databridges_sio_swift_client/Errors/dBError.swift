@@ -108,7 +108,7 @@ public class dBError : Error
                    }
                    else
                    {
-                       self.code = code;
+                       self.code = self.code + code;
                    }
                }
           }

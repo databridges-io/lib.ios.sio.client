@@ -573,6 +573,9 @@ public class databridges_sio_swift_client{
             self.ClientSocket?.disconnect()
             
         default:
+            let dberr: dBError =  dBError("E082");
+            dberr.updateCode(message.subject!.uppercased(), message.payload!)
+            self.connectionstate?.handledispatcher(States.ERROR,  dberr)
            break
         }
     }
